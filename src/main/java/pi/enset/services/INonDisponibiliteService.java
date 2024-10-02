@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface INonDisponibiliteService {
     List<NonDisponibilite> getNonDisponibilites();
+    
+    List<NonDisponibilite> getNonDisponibilitesByEnseignantId(Long enseignantId); 
 
     NonDisponibilite addNonDisponibilite(NonDisponibilite nonDisponibilite);
 

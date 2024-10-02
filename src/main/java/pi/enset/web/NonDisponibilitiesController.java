@@ -20,6 +20,10 @@ public class NonDisponibilitiesController {
         return nonDisponibiliteService.getNonDisponibilites();
     }
 
+    @GetMapping("/enseignant/{enseignantId}")
+    public List<NonDisponibilite> getNonDisponibilitesByEnseignantId(@PathVariable Long enseignantId) {
+        return nonDisponibiliteService.getNonDisponibilitesByEnseignantId(enseignantId);
+    }
     @GetMapping("/{id}")
     public NonDisponibilite getNonDisponibiliteById(@PathVariable Long id) {
         return nonDisponibiliteService.getNonDisponibiliteById(id);

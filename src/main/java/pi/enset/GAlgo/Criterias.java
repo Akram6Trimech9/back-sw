@@ -14,24 +14,26 @@ public class Criterias {
         this.schoolTimetable = schoolTimetable;
     }
 
-    public int isDisponibilitesEnseignantsSatisfied() {
-        int couner = 0;
-        List<Enseignant> enseignants = schoolTimetable.getEnseignants();
-        for (Enseignant enseignant : enseignants) {
-            for (ElementDeModule element : enseignant.getElementDeModules()) {
-                // Check if the enseignant is available for the seance's jour and periode
-                boolean isAvailable = enseignant.getNonDisponibilites().stream()
-                        .noneMatch(nonDispo ->
-                                nonDispo.getJour() == element.getJour() &&
-                                        nonDispo.getPeriode() == element.getPeriode()
-                        );
-                if (!isAvailable) {
-                    couner++;
-                }
+ public int isDisponibilitesEnseignantsSatisfied() {
+    int couner = 0;
+    List<Enseignant> enseignants = schoolTimetable.getEnseignants();
+    
+    for (Enseignant enseignant : enseignants) {
+        for (ElementDeModule element : enseignant.getElementDeModules()) {
+            boolean isAvailable = enseignant.getNonDisponibilites().stream()
+                .noneMatch(nonDispo ->
+                    nonDispo.getJour() == element.getJour() &&
+                    nonDispo.getPeriode() == element.getPeriode()
+                );
+
+             if (!isAvailable) {
+                couner++;
             }
         }
-        return couner;
     }
+
+     return couner;
+}
 
 
     public int isEnseignantClasseConflictSatisfied() {

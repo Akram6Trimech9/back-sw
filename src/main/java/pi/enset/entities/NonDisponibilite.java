@@ -19,7 +19,7 @@ public class NonDisponibilite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    private DayOfWeek jour;//jourDeLaSemaine
+    private DayOfWeek jour; 
     private Periode periode;
     @ManyToOne
     private Enseignant enseignant;

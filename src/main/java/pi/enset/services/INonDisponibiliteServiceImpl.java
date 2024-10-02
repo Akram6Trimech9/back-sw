@@ -44,4 +44,8 @@ public class INonDisponibiliteServiceImpl implements INonDisponibiliteService {
         nonDisponibilite.setId(id);
         return nonDisponibiliteRepository.save(nonDisponibilite);
     }
+       @Override
+    public List<NonDisponibilite> getNonDisponibilitesByEnseignantId(Long enseignantId) {
+        return nonDisponibiliteRepository.findByEnseignantId(enseignantId);
+    }
 }

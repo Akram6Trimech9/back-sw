@@ -37,7 +37,7 @@ public class PiApplication {
             // Create the Admin
             Admin admin = new Admin();
             admin.setNom("Manel");
-            admin.setPrenom("admin");
+            admin.setPrenom("Helal");
             admin.setEmail("admin@admin.com");
             admin.setPassword("admin");
             admin.setTel("0600000000");
