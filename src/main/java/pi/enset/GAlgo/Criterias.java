@@ -14,26 +14,28 @@ public class Criterias {
         this.schoolTimetable = schoolTimetable;
     }
 
- public int isDisponibilitesEnseignantsSatisfied() {
-    int couner = 0;
-    List<Enseignant> enseignants = schoolTimetable.getEnseignants();
+    public int isDisponibilitesEnseignantsSatisfied() {
+        int counter = 0; // Changed variable name to 'counter' for clarity
+        List<Enseignant> enseignants = schoolTimetable.getEnseignants();
+        
+        for (Enseignant enseignant : enseignants) {
+            for (ElementDeModule element : enseignant.getElementDeModules()) {
+                // Check if the enseignant is not available for the current module element
+                boolean isUnavailable = enseignant.getNonDisponibilites().stream()
+                    .anyMatch(nonDispo ->
+                        nonDispo.getJour() == element.getJour() &&
+                        nonDispo.getPeriode() == element.getPeriode()
+                    );
     
-    for (Enseignant enseignant : enseignants) {
-        for (ElementDeModule element : enseignant.getElementDeModules()) {
-            boolean isAvailable = enseignant.getNonDisponibilites().stream()
-                .noneMatch(nonDispo ->
-                    nonDispo.getJour() == element.getJour() &&
-                    nonDispo.getPeriode() == element.getPeriode()
-                );
-
-             if (!isAvailable) {
-                couner++;
+                // Increment the counter if the enseignant is not available
+                if (isUnavailable) {
+                    counter++;
+                }
             }
         }
+    
+        return counter; // Return the final counter value
     }
-
-     return couner;
-}
 
 
     public int isEnseignantClasseConflictSatisfied() {
